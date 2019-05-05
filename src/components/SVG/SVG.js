@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 
 export class SVG extends Component {
-    state = {
-        isLoaded : false
-    }
+    
     componentDidMount() {
         this.drawChart();
       }
@@ -414,7 +412,7 @@ export class SVG extends Component {
 
 
       svg.selectAll("text")
-      .data(idh, d => d)
+      .data(idh)
       .enter()
       .append( "text" )
       .text( (d) => d.idh2010)

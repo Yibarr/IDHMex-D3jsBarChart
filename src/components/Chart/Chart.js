@@ -1,25 +1,37 @@
 
 import React, { Component } from 'react';
 import {Container,Col,Row,Dropdown,Button} from 'react-materialize';
-import SVG from '../SVG/SVG';
-import {draw} from '../barchart'
+import {injectDropdownStates,ascendent,descendent,inAlphabeticalOrder,randomOrder} from '../barchart'
 import './Chart.css'
 
 
 export class Chart extends Component {
-  
-  componentDidMount(){
-        /* this.setState({
-          draw:draw
-        }) */
-        this.fillDropdowns();
-      
-      }
-  fillDropdowns(){
-    draw()
-  }
+  constructor(props){
+    super(props);
 
-  
+  }
+  componentDidMount(){
+        this.fillDropdowns();
+        this.renderChart();
+      };
+
+  fillDropdowns(){
+    injectDropdownStates();
+  };
+
+  sortUp(){
+      ascendent();
+  };
+
+  sortDown(){
+    descendent();
+  };
+  AlphabeticSort(){
+    inAlphabeticalOrder();
+  };
+  renderChart(){
+    randomOrder()
+  }
   render() {   
     return (
       <div>
@@ -45,14 +57,14 @@ export class Chart extends Component {
             </Col>
             <Col s={4} m={4} push='m2'>
               <Dropdown trigger={<Button className='large-button button deep-purple'>Sort</Button>}>
-                <a className='deep-purple-text'>Alfabéticamente</a>
-                <a className='deep-purple-text'>Ascendente</a>
-                <a className='deep-purple-text'>Descendente</a>
+                <a className='deep-purple-text' onClick={this.AlphabeticSort}>Alfabetical</a>
+                <a className='deep-purple-text' onClick={this.sortUp}>Ascendent</a>
+                <a className='deep-purple-text' onClick={this.sortDown}>Descendent</a>
               </Dropdown> 
             </Col>
           </Row>
-          <SVG/>
-        <p>Made by <a href='https://github.com/Yibarr' target='_blank'><u><strong>Yibarr</strong></u></a></p>
+          <div id='chart'></div>
+          <p>Made by <a href='https://github.com/Yibarr' target='_blank' rel="noopener noreferrer" ><u><strong>Yibarr</strong></u></a></p>
         </Container>
       </div>
     )

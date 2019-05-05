@@ -10,10 +10,10 @@ export class SVG extends Component {
       }
 
       drawChart(){
-        let idh = {
-          state01:{
+        let idh = [
+          {
               name:'Aguascalientes',
-              abr:'Ags.',
+              abr:'AGU',
               idh2010:0.880,
               idh2005:0.861,
               idh2000:0.850,
@@ -21,9 +21,9 @@ export class SVG extends Component {
               idh1990:0.804,
               idh1980:0.737
           },
-          state02:{
+          {
               name:'Baja California',
-              abr:'B.C.S.',
+              abr:'BCN',
               idh2010:0.877,
               idh2005:0.865,
               idh2000:0.862,
@@ -31,9 +31,9 @@ export class SVG extends Component {
               idh1990:0.850,
               idh1980:0.796
           },
-          state03:{
+          {
               name:'Baja California Sur',
-              abr:'B.C.S.',
+              abr:'BCS',
               idh2010:0.879,
               idh2005:0.873,
               idh2000:0.855,
@@ -41,9 +41,9 @@ export class SVG extends Component {
               idh1990:0.838,
               idh1980:0.787
           },
-          state04:{
+          {
               name:'Campeche',
-              abr:'Camp.',
+              abr:'CAM',
               idh2010:0.821,
               idh2005:0.804,
               idh2000:0.792,
@@ -52,9 +52,9 @@ export class SVG extends Component {
               idh1980:0.647
               
           },
-          state05:{
+          {
               name:'Ciudad de México',
-              abr:'CDMX',
+              abr:'CMX',
               idh2010:0.954,
               idh2005:0.938,
               idh2000:0.930,
@@ -63,9 +63,9 @@ export class SVG extends Component {
               idh1980:0.828
               
           },
-          state06:{
+          {
               name:'Coahuila',
-              abr:'Coah.',
+              abr:'COA',
               idh2010:0.896,
               idh2005:0.876,
               idh2000:0.863,
@@ -74,9 +74,9 @@ export class SVG extends Component {
               idh1980:0.770
               
           },
-          state07:{
+          {
               name:'Colima',
-              abr:'Col.',
+              abr:'COL',
               idh2010:0.846,
               idh2005:0.834,
               idh2000:0.826,
@@ -85,9 +85,9 @@ export class SVG extends Component {
               idh1980:0.719
               
           },
-          state08:{
+          {
               name:'Chiapas',
-              abr:'Chis.',
+              abr:'CHI',
               idh2010:0.724,
               idh2005:0.700,
               idh2000:0.681,
@@ -96,9 +96,9 @@ export class SVG extends Component {
               idh1980:0.598
               
           },
-          state09:{
+          {
               name:'Chihuahua',
-              abr:'Chih.',
+              abr:'CHH',
               idh2010:0.864,
               idh2005:0.880,
               idh2000:0.867,
@@ -107,9 +107,9 @@ export class SVG extends Component {
               idh1980:0.777
               
           },
-          state10:{
+          {
               name:'Durango',
-              abr:'Dgo.',
+              abr:'DUR',
               idh2010:0.840,
               idh2005:0.822,
               idh2000:0.805,
@@ -118,9 +118,9 @@ export class SVG extends Component {
               idh1980:0.722
               
           },
-          state11:{
+          {
               name:'Guanajuato',
-              abr:'Gto.',
+              abr:'GUA',
               idh2010:0.812,
               idh2005:0.789,
               idh2000:0.771,
@@ -129,9 +129,9 @@ export class SVG extends Component {
               idh1980:0.665
               
           },
-          state12:{
+          {
               name:'Guerrero',
-              abr:'Gro.',
+              abr:'GRO',
               idh2010:0.752,
               idh2005:0.727,
               idh2000:0.713,
@@ -140,9 +140,9 @@ export class SVG extends Component {
               idh1980:0.607
               
           },
-          state13:{
+          {
               name:'Hidalgo',
-              abr:'Hgo.',
+              abr:'HID',
               idh2010:0.798,
               idh2005:0.772,
               idh2000:0.755,
@@ -151,9 +151,9 @@ export class SVG extends Component {
               idh1980:0.649
               
           },
-          state14:{
+          {
               name:'Jalisco',
-              abr:'Jal.',
+              abr:'JAL',
               idh2010:0.854,
               idh2005:0.836,
               idh2000:0.826,
@@ -162,9 +162,9 @@ export class SVG extends Component {
               idh1980:0.742
               
           },
-          state15:{
+          {
               name:'Estado de México',
-              abr:'Edo. Mex.',
+              abr:'EMX',
               idh2010:0.843,
               idh2005:0.820,
               idh2000:0.806,
@@ -173,9 +173,9 @@ export class SVG extends Component {
               idh1980:0.743
               
           },
-          state16:{
+          {
               name:'Michoacán',
-              abr:'Mich.',
+              abr:'MIC',
               idh2010:0.786,
               idh2005:0.759,
               idh2000:0.746,
@@ -184,9 +184,9 @@ export class SVG extends Component {
               idh1980:0.648
               
           },
-          state17:{
+          {
               name:'Morelos',
-              abr:'Mor.',
+              abr:'MOR',
               idh2010:0.852,
               idh2005:0.830,
               idh2000:0.807,
@@ -195,9 +195,9 @@ export class SVG extends Component {
               idh1980:0.699
               
           },
-          state18:{
+          {
               name:'Nayarit',
-              abr:'Nay',
+              abr:'NAY',
               idh2010:0.793,
               idh2005:0.771,
               idh2000:0.764,
@@ -206,9 +206,9 @@ export class SVG extends Component {
               idh1980:0.689
               
           },
-          state19:{
+          {
               name:'Nuevo Leon',
-              abr:'N.L.',
+              abr:'NVL',
               idh2010:0.922,
               idh2005:0.905,
               idh2000:0.893,
@@ -217,9 +217,9 @@ export class SVG extends Component {
               idh1980:0.800
               
           },
-          state20:{
+          {
               name:'Oaxaca',
-              abr:'Oax.',
+              abr:'OAX',
               idh2010:0.733,
               idh2005:0.711,
               idh2000:0.689,
@@ -228,9 +228,9 @@ export class SVG extends Component {
               idh1980:0.576
               
           },
-          state21:{
+          {
               name:'Puebla',
-              abr:'Pue.',
+              abr:'PUE',
               idh2010:0.809,
               idh2005:0.779,
               idh2000:0.759,
@@ -239,9 +239,9 @@ export class SVG extends Component {
               idh1980:0.658
               
           },
-          state22:{
+          {
               name:'Queretaro',
-              abr:'Qro.',
+              abr:'QRO',
               idh2010:0.871,
               idh2005:0.853,
               idh2000:0.835,
@@ -250,9 +250,9 @@ export class SVG extends Component {
               idh1980:0.693
               
           },
-          state23:{
+          {
               name:'Quintana Roo',
-              abr:'Q. Roo',
+              abr:'QNR',
               idh2010:0.889,
               idh2005:0.875,
               idh2000:0.862,
@@ -261,9 +261,9 @@ export class SVG extends Component {
               idh1980:0.738
               
           },
-          state24:{
+          {
               name:'San Luis Potosi',
-              abr:'S.L.P.',
+              abr:'SLP',
               idh2010:0.828,
               idh2005:0.802,
               idh2000:0.781,
@@ -272,9 +272,9 @@ export class SVG extends Component {
               idh1980:0.661
               
           },
-          state25:{
+          {
               name:'Sinaloa',
-              abr:'Sin.',
+              abr:'SIN',
               idh2010:0.821,
               idh2005:0.811,
               idh2000:0.796,
@@ -283,9 +283,9 @@ export class SVG extends Component {
               idh1980:0.713
               
           },
-          state26:{
+          {
               name:'Sonora',
-              abr:'Son',
+              abr:'SON',
               idh2010:0.873,
               idh2005:0.864,
               idh2000:0.853,
@@ -294,9 +294,9 @@ export class SVG extends Component {
               idh1980:0.759
               
           },
-          state27:{
+          {
               name:'Tabasco',
-              abr:'Tab.',
+              abr:'TAB',
               idh2010:0.795,
               idh2005:0.775,
               idh2000:0.762,
@@ -305,9 +305,9 @@ export class SVG extends Component {
               idh1980:0.677
               
           },
-          state28:{
+          {
               name:'Tamaulipas',
-              abr:'Tamps.',
+              abr:'TAM',
               idh2010:0.864,
               idh2005:0.854,
               idh2000:0.838,
@@ -316,9 +316,9 @@ export class SVG extends Component {
               idh1980:0.759
               
           },
-          state29:{
+          {
               name:'Tlaxcala',
-              abr:'Tlax.',
+              abr:'TLX',
               idh2010:0.790,
               idh2005:0.773,
               idh2000:0.758,
@@ -327,9 +327,9 @@ export class SVG extends Component {
               idh1980:0.660
               
           },
-          state30:{
+          {
               name:'Veracruz',
-              abr:'Ver.',
+              abr:'VER',
               idh2010:0.780,
               idh2005:0.759,
               idh2000:0.743,
@@ -338,9 +338,9 @@ export class SVG extends Component {
               idh1980:0.667
               
           },
-          state31:{
+          {
               name:'Yucatan',
-              abr:'Yuc.',
+              abr:'YUC',
               idh2010:0.822,
               idh2005:0.802,
               idh2000:0.787,
@@ -349,9 +349,9 @@ export class SVG extends Component {
               idh1980:0.691
               
           },
-          state32:{
+          {
               name:'Zacatecas',
-              abr:'Zac.',
+              abr:'ZAC',
               idh2010:0.801,
               idh2005:0.778,
               idh2000:0.753,
@@ -359,25 +359,96 @@ export class SVG extends Component {
               idh1990:0.730,
               idh1980:0.663
               
-          },
+          }
+        ]
+       
+
+      // Margins of the chart
+      const margin = {top: 20, right: 20, bottom: 40, left: 45};
+      const width = 945;
+      const height = 400;
+
+      chart(idh, width, height, margin);
+
+    function chart(idh, chartWidth, chartHeight, margin) {
+      const width = chartWidth - margin.left - margin.right;
+      const height = chartHeight - margin.top - margin.bottom;
+
+      const x = d3.scaleBand()
+        .rangeRound([0, width])
+        .paddingInner(0.1);
+
+      const y = d3.scaleLinear()
+        .range([height, 0]);
+
+      const xAxis = d3.axisBottom(x);
+
+      const yAxis = d3.axisLeft(y)
+                .ticks(20);
       
-      }
-      console.log(idh.state24.name)
-        const square = d3.selectAll("rect");
-        square.style("fill", "orange");
+      
+      d3.selectAll('#chart');
+
+      const svg = d3.select('#chart').append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+      x.domain(idh.map(d =>  d.abr));
+      y.domain([0, d3.max(idh, d =>  d.idh2010)]);
+
+      svg.append('g')
+      .attr('class', 'x axis')
+      .attr('transform', 'translate(0,' + height + ')')
+      .call(xAxis)
+      .style('font-weight','bolder');
+
+      svg.append('g')
+      .attr('class', 'y axis')
+      .call(yAxis)
+      .style('font-weight','bolder');
+
+
+      svg.selectAll("text")
+      .data(idh, d => d)
+      .enter()
+      .append( "text" )
+      .text( (d) => d.idh2010)
+      .attr('y', -250)
+      .attr('x', (d) => { return x(d.abr) })
+      .style('font-size', '0.56rem')
+      .style('font-weight','bolder')
+      .attr('y', d => { return y(d.idh2010) - 8 } )
+      .attr('x', (d) => { return x(d.abr) + 5 })
+
+      svg.selectAll('.bar')
+      .data(idh)
+      .enter().append('rect')
+      .attr('class', 'bar')
+      .attr('x', d =>  x(d.abr))
+      .attr('width', x.bandwidth())
+      .attr('y', d => { return y(0)} )
+      .style('fill', '#B0F566')
+
+      .on('mouseover', function(d,i) {
+        d3.select(this).style('fill', 'orange')
+      })
+      .on('mouseout', function(d,i) {
+        d3.select(this).style('fill', '#B0F566')
+      })
+      .attr('y', d =>  y(d.idh2010))
+      .attr('height', d =>  height - y(d.idh2010))
+     
+    }
+    
 
       }
     
   render() {
-    return (
-      <div id='chart'>
-        <svg width="300px" height="150px">
-        <rect x="20" y="20" width="20px" height="20" rx="5" ry="5" />
-        <rect x="60" y="20" width="20px" height="20" rx="5" ry="5" />
-        <rect x="100" y="20" width="20px" height="20" rx="5" ry="5"/>
-        </svg>
-      </div>
-    )
+   return (
+       <div id='chart'></div>
+   )
   }
 }
 

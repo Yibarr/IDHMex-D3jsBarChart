@@ -1,32 +1,24 @@
-import * as d3 from 'd3'
+
 import React, { Component } from 'react';
 import {Container,Col,Row,Dropdown,Button} from 'react-materialize';
-import idh from '../../manifest.js'
 import SVG from '../SVG/SVG';
+import {draw} from '../barchart'
 import './Chart.css'
 
 
 export class Chart extends Component {
   
   componentDidMount(){
-        this.draw()
-      }
-
-      draw(){
-        
-        d3.select('#states')
-          .selectAll('states')
-          .data(idh)
-          .enter()
-          .append('Li')
-          .append('a')
-          .attr('class','deep-purple-text')
-          .text(d=>d.name)
-          
-
-
-      }
+        /* this.setState({
+          draw:draw
+        }) */
+        this.fillDropdowns();
       
+      }
+  fillDropdowns(){
+    draw()
+  }
+
   
   render() {   
     return (
@@ -60,6 +52,7 @@ export class Chart extends Component {
             </Col>
           </Row>
           <SVG/>
+        <p>Made by <a href='https://github.com/Yibarr' target='_blank'><u><strong>Yibarr</strong></u></a></p>
         </Container>
       </div>
     )

@@ -4,16 +4,19 @@ import idh from '../../manifest'
 
 export class SVG extends Component {
     
-    componentDidMount() {
+  componentDidMount() {
         this.drawChart();
+        
       }
-
       drawChart(){
         
+        idh.sort((a, b) => a.idh2010> b.idh2010 ? -1 : 1);
+         /* idh.sort((a, b) => a.idh2010> b.idh2010 ? 1 : -1); */
+
 
       // Margins of the chart
       const margin = {top: 20, right: 20, bottom: 40, left: 45};
-      const width = 945;
+      const width = 955;
       const height = 400;
 
       chart(idh, width, height, margin);
@@ -62,14 +65,14 @@ export class SVG extends Component {
 
 
       svg.selectAll("text")
-      .data(idh)
+      .data(idh,d => d  )
       .enter()
       .append( "text" )
       .text( (d) => d.idh2010)
       .attr('y', -250)
       .attr('x', (d) => { return x(d.abr) })
       .style('font-size', '0.56rem')
-      .style('font-weight','bolder')
+     
       .attr('y', d => { return y(d.idh2010) - 8 } )
       .attr('x', (d) => { return x(d.abr) + 5 })
 
@@ -102,5 +105,6 @@ export class SVG extends Component {
    )
   }
 }
+
 
 export default SVG

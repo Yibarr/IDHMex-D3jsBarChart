@@ -20,7 +20,11 @@ export class Chart extends Component {
           .enter()
           .append('Li')
           .append('a')
+          .attr('class','deep-purple-text')
           .text(d=>d.name)
+          
+
+
       }
       
   
@@ -37,21 +41,21 @@ export class Chart extends Component {
                 
               </Dropdown> 
             </Col>
-            <Col s={4} m={2} push='m1' >
-              <Dropdown trigger={<Button className='large-button deep-purple'>Years</Button>}>
-                <a>2010</a>
-                <a>2005</a>
-                <a>2000</a>
-                <a>1995</a>
-                <a>1990</a>
-                <a>1980</a>
+            <Col s={3} m={2} push='m1' >
+              <Dropdown trigger={<Button className='large-button deep-purple'>Year</Button>}>
+                <a className='deep-purple-text'>2010</a>
+                <a className='deep-purple-text'>2005</a>
+                <a className='deep-purple-text'>2000</a>
+                <a className='deep-purple-text'>1995</a>
+                <a className='deep-purple-text'>1990</a>
+                <a className='deep-purple-text'>1980</a>
               </Dropdown> 
             </Col>
             <Col s={4} m={4} push='m2'>
               <Dropdown trigger={<Button className='large-button button deep-purple'>Sort</Button>}>
-                <a>Alfabéticamente</a>
-                <a>Ascendente</a>
-                <a>Descendente</a>
+                <a className='deep-purple-text'>Alfabéticamente</a>
+                <a className='deep-purple-text'>Ascendente</a>
+                <a className='deep-purple-text'>Descendente</a>
               </Dropdown> 
             </Col>
           </Row>

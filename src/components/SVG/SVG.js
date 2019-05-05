@@ -384,7 +384,7 @@ export class SVG extends Component {
       const xAxis = d3.axisBottom(x);
 
       const yAxis = d3.axisLeft(y)
-                .ticks(20);
+                .ticks(30);
       
       
       d3.selectAll('#chart');
@@ -402,12 +402,15 @@ export class SVG extends Component {
       .attr('class', 'x axis')
       .attr('transform', 'translate(0,' + height + ')')
       .call(xAxis)
-      .style('font-weight','bolder');
+      .style('font-weight','bolder')
+      .style('font-size','0.7rem');
+      
 
       svg.append('g')
       .attr('class', 'y axis')
       .call(yAxis)
-      .style('font-weight','bolder');
+      .style('font-weight','bolder')
+      .style('font-size','1rem');
 
 
       svg.selectAll("text")

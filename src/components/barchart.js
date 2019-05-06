@@ -93,19 +93,6 @@ export let drawBarchart=()=>{
       .style('font-weight','bolder')
       .style('font-size','1rem');
 
-
-      svg.selectAll("text")
-      .data(idh,d => d  )
-      .enter()
-      .append( "text" )
-      .text( (d) => d.idh1980)
-      .attr('y', -250)
-      .attr('x', (d) => { return x(d.abr) })
-      .style('font-size', '0.56rem')
-     
-      .attr('y', d => { return y(d.idh1980) - 8 } )
-      .attr('x', (d) => { return x(d.abr) + 5 })
-
       svg.selectAll('.bar')
       .data(idh)
       .enter().append('rect')
@@ -114,13 +101,14 @@ export let drawBarchart=()=>{
       .attr('width', x.bandwidth())
       .attr('y', d => { return y(0)} )
       .style('fill', '#B0F566')
-
       .on('mouseover', function(d,i) {
         d3.select(this).style('fill', 'orange')
       })
       .on('mouseout', function(d,i) {
         d3.select(this).style('fill', '#B0F566')
       })
+      .transition()
+      .delay((d, i) => i * 5 )
       .attr('y', d =>  y(d.idh1980))
       .attr('height', d =>  height - y(d.idh1980))
      

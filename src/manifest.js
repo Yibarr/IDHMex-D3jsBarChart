@@ -1,4 +1,4 @@
-let db = [
+let idh = [
   {
       name:'Aguascalientes',
       abr:'AGU',
@@ -351,4 +351,4 @@ let db = [
 ]
 
 
-export default db
+export default idh

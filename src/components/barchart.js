@@ -1,22 +1,32 @@
 import * as d3 from 'd3'
-import db from '../manifest'
+import idh from '../manifest'
 
-let idh = db
 let indexValue = [];
-let valueSet=()=>{
-  for (let i = 0; i <idh.length; i++) {
-    indexValue.push(idh[i].idh2010)  
-  }
-} 
-valueSet();
 
-export let randomOrder=()=>{
+export let injectDropdownStates=()=>{  
+  d3.select('#states')
+    .selectAll('states')
+    .data(idh)
+    .enter()
+    .append('Li')
+    .append('a')
+    .attr('class','deep-purple-text')
+    .text(d=>d.name) 
+
+    let setYear=set1980
+    let idhSort=randomOrder
+    setData(setYear,idhSort)
+}
   
-   let random=(arr)=>{
+
+
+export let randomOrder=(arr,arr1)=>{
+   let random=(arr,arr1)=>{
     arr.sort(() => Math.random() - 0.5);
+    arr1.sort(() => Math.random() - 0.5);
+
   }
-  random(idh)
-  drawBarchart()
+  random(idh,indexValue)
 }
 
 export let inAlphabeticalOrder=()=>{
@@ -26,34 +36,72 @@ export let inAlphabeticalOrder=()=>{
     return 0;
 })
   d3.select('svg').remove() 
-  drawBarchart();
+  
 }
 
-export let ascendent=()=>{
-  idh.sort((a, b) => a.idh1980> b.idh1980 ? 1 : -1);
+export let ascendent=(arr,arr1)=>{
+  arr.sort((a,b)=>{
+    return a-b
+  });
+  arr1.sort((a,b)=>{
+    return a-b
+  });
+  d3.select('.svg').remove();
+}
+
+export let descendent=(arr,arr1)=>{
+  arr.sort((a,b)=>{
+    return b-a
+  });
+  arr1.sort((a,b)=>{
+    return b-a
+  });
+    d3.select('.svg').remove();
+}
+
+let set1980=()=>{
+  for (let i = 0; i <idh.length; i++) {
+    indexValue.push(idh[i].idh1980)  
+  }
+}
+
+let set1990=()=>{
+  for (let i = 0; i <idh.length; i++) {
+    indexValue.push(idh[i].idh1990)  
+  }
+}
+
+let set1995=()=>{
+  for (let i = 0; i <idh.length; i++) {
+    indexValue.push(idh[i].idh1995)  
+  }
+}
+
+let set2000=()=>{
+  for (let i = 0; i <idh.length; i++) {
+    indexValue.push(idh[i].idh2000)  
+  }
+}
+
+let set2005=()=>{
+  for (let i = 0; i <idh.length; i++) {
+    indexValue.push(idh[i].idh2005)  
+  }
+}
+
+let set2010=()=>{
+  
+  for (let i = 0; i <idh.length; i++) {
+    indexValue.push(idh[i].idh2010)  
+  }
+}
+
+export let setData=(setYear,idhSort)=>{
+  setYear();
+  idhSort(idh,indexValue);
   d3.select('.svg').remove();
   drawBarchart();
-
 }
-
-export let descendent=()=>{
-    idh.sort((a, b) => a.idh1980> b.idh1980 ? -1 : 1); 
-    d3.select('.svg').remove();
-    drawBarchart();
-}
-export let injectDropdownStates=()=>{  
-    d3.select('#states')
-      .selectAll('states')
-      .data(idh)
-      .enter()
-      .append('Li')
-      .append('a')
-      .attr('class','deep-purple-text')
-      .text(d=>d.name)
-    
-  }
-
-
 
 export let drawBarchart=()=>{
       const margin = {top: 20, right: 20, bottom: 40, left: 45};
@@ -77,9 +125,7 @@ export let drawBarchart=()=>{
 
       const yAxis = d3.axisLeft(y)
                 .ticks(20);
-      
-
-
+    
       const svg = d3.select('#chart').append('svg')
         .attr('class','svg')
         .attr('width', width + margin.left + margin.right)
@@ -88,7 +134,7 @@ export let drawBarchart=()=>{
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       x.domain(idh.map(d =>  d.abr));
-      y.domain([0, d3.max(indexValue, d =>  d)]);
+      y.domain([0, d3.max(idh, d =>  d.idh2010)]);
 
       svg.append('g')
       .attr('class', 'x axis')
@@ -110,13 +156,13 @@ export let drawBarchart=()=>{
       .enter()
       .append( "text" )
       .text( (d,i) => indexValue[i])
-      .attr('y', -250)
-      .attr('x', () =>  x(idh.abr) )
-      .style('font-size', '0.56rem')
-     
       .attr('y', (d,i) => { return y(indexValue[i]) - 8 } )
-      .attr('x', (d) => { return x(d.abr) + 5 }) 
-
+      .attr('x',(d)=>{return y(-3) })
+      .style('font-size', '0.56rem')
+      .transition()
+      .delay(100)
+      .attr('x', (d) => { return x(d.abr)+ 1 })
+      
       svg.selectAll('.bar')
       .data(idh)
       .enter().append('rect')
@@ -132,21 +178,16 @@ export let drawBarchart=()=>{
         d3.select(this).style('fill', '#B0F566')
       })
       .transition()
-      .delay((d, i) => i * 1 )
+      .delay( 10 )
       .attr('y', (d,i) =>  y(indexValue[i]))
       .attr('height', (d,i) =>  height - y(indexValue[i]))
      
     }
-    
-
 }
+
 
 
 module.esports={
     injectDropdownStates,
-    drawBarchart,
-    ascendent,
-    descendent,
-    inAlphabeticalOrder,
-    randomOrder
+    drawBarchart
 }

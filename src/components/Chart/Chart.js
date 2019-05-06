@@ -1,37 +1,22 @@
 
 import React, { Component } from 'react';
 import {Container,Col,Row,Dropdown,Button} from 'react-materialize';
-import {injectDropdownStates,ascendent,descendent,inAlphabeticalOrder,randomOrder} from '../barchart'
+import {injectDropdownStates} from '../barchart'
 import './Chart.css'
 
 
 export class Chart extends Component {
   constructor(props){
     super(props);
-
   }
   componentDidMount(){
-        this.fillDropdowns();
-        this.renderChart();
+        this.fillDropdowns();        
       };
 
   fillDropdowns(){
     injectDropdownStates();
   };
-
-  sortUp(){
-      ascendent();
-  };
-
-  sortDown(){
-    descendent();
-  };
-  AlphabeticSort(){
-    inAlphabeticalOrder();
-  };
-  renderChart(){
-    randomOrder()
-  }
+  
   render() {   
     return (
       <div>
@@ -47,12 +32,12 @@ export class Chart extends Component {
             </Col>
             <Col s={3} m={2} push='m1' >
               <Dropdown trigger={<Button className='large-button deep-purple'>Year</Button>}>
-                <a className='deep-purple-text'>2010</a>
-                <a className='deep-purple-text'>2005</a>
-                <a className='deep-purple-text'>2000</a>
-                <a className='deep-purple-text'>1995</a>
-                <a className='deep-purple-text'>1990</a>
-                <a className='deep-purple-text'>1980</a>
+                <a className='deep-purple-text' >2010</a>
+                <a className='deep-purple-text' >2005</a>
+                <a className='deep-purple-text' >2000</a>
+                <a className='deep-purple-text' >1995</a>
+                <a className='deep-purple-text' >1990</a>
+                <a className='deep-purple-text' >1980</a>
               </Dropdown> 
             </Col>
             <Col s={4} m={4} push='m2'>

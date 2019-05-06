@@ -1,12 +1,21 @@
 import * as d3 from 'd3'
-import idh from '../manifest'
+import db from '../manifest'
+
+let idh = db
+let indexValue = [];
+let valueSet=()=>{
+  for (let i = 0; i <idh.length; i++) {
+    indexValue.push(idh[i].idh2010)  
+  }
+} 
+valueSet();
 
 export let randomOrder=()=>{
-  let random=(arr)=>{
+  
+   let random=(arr)=>{
     arr.sort(() => Math.random() - 0.5);
   }
-  random(idh)  
-  
+  random(idh)
   drawBarchart()
 }
 
@@ -44,14 +53,16 @@ export let injectDropdownStates=()=>{
     
   }
 
+
+
 export let drawBarchart=()=>{
       const margin = {top: 20, right: 20, bottom: 40, left: 45};
       const width = 955;
       const height = 400;
 
-      chart(idh, width, height, margin);
+      chart(idh, indexValue, width, height, margin);
 
-    function chart(idh, chartWidth, chartHeight, margin) {
+    function chart(idh, indexValue, chartWidth, chartHeight, margin) {
       const width = chartWidth - margin.left - margin.right;
       const height = chartHeight - margin.top - margin.bottom;
 
@@ -77,7 +88,7 @@ export let drawBarchart=()=>{
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       x.domain(idh.map(d =>  d.abr));
-      y.domain([0, d3.max(idh, d =>  d.idh1980)]);
+      y.domain([0, d3.max(indexValue, d =>  d)]);
 
       svg.append('g')
       .attr('class', 'x axis')
@@ -93,24 +104,37 @@ export let drawBarchart=()=>{
       .style('font-weight','bolder')
       .style('font-size','1rem');
 
+
+       svg.selectAll("text")
+      .data(idh,d => d  )
+      .enter()
+      .append( "text" )
+      .text( (d,i) => indexValue[i])
+      .attr('y', -250)
+      .attr('x', () =>  x(idh.abr) )
+      .style('font-size', '0.56rem')
+     
+      .attr('y', (d,i) => { return y(indexValue[i]) - 8 } )
+      .attr('x', (d) => { return x(d.abr) + 5 }) 
+
       svg.selectAll('.bar')
       .data(idh)
       .enter().append('rect')
       .attr('class', 'bar')
       .attr('x', d =>  x(d.abr))
       .attr('width', x.bandwidth())
-      .attr('y', d => { return y(0)} )
+      .attr('y', y(0) )
       .style('fill', '#B0F566')
-      .on('mouseover', function(d,i) {
+      .on('mouseover', function() {
         d3.select(this).style('fill', 'orange')
       })
-      .on('mouseout', function(d,i) {
+      .on('mouseout', function() {
         d3.select(this).style('fill', '#B0F566')
       })
       .transition()
-      .delay((d, i) => i * 5 )
-      .attr('y', d =>  y(d.idh1980))
-      .attr('height', d =>  height - y(d.idh1980))
+      .delay((d, i) => i * 1 )
+      .attr('y', (d,i) =>  y(indexValue[i]))
+      .attr('height', (d,i) =>  height - y(indexValue[i]))
      
     }
     

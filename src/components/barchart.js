@@ -12,31 +12,25 @@ export let injectDropdownStates=()=>{
     .append('a')
     .attr('class','deep-purple-text')
     .text(d=>d.name) 
-
-    let setYear=set1980
-    let idhSort=randomOrder
-    setData(setYear,idhSort)
 }
+
+export let randomOrder=()=>{
   
-
-
-export let randomOrder=(arr,arr1)=>{
-   let random=(arr,arr1)=>{
-    arr.sort(() => Math.random() - 0.5);
-    arr1.sort(() => Math.random() - 0.5);
-
-  }
-  random(idh,indexValue)
 }
 
 export let inAlphabeticalOrder=()=>{
-  idh.sort(function(a, b){
-    if(a.name < b.name) { return -1; }
-    if(a.name > b.name) { return 1; }
+  
+  indexValue.sort(function(idh){
+    if(idh.name < idh.name) { return -1; }
+    if(idh.name > idh.name) { return 1; }
     return 0;
 })
+  idh.sort(function(idh){
+    if(idh.name < idh.name) { return -1; }
+    if(idh.name > idh.name) { return 1; }
+    return 0;
+  })
   d3.select('svg').remove() 
-  
 }
 
 export let ascendent=(arr,arr1)=>{
@@ -59,49 +53,61 @@ export let descendent=(arr,arr1)=>{
     d3.select('.svg').remove();
 }
 
-let set1980=()=>{
+export let set1980=()=>{
+  let index1980=[];
   for (let i = 0; i <idh.length; i++) {
-    indexValue.push(idh[i].idh1980)  
+    index1980.push(idh[i].idh1980)  
   }
+  indexValue=index1980
 }
 
-let set1990=()=>{
+export let set1990=()=>{
+  let index1990=[];
   for (let i = 0; i <idh.length; i++) {
-    indexValue.push(idh[i].idh1990)  
+    index1990.push(idh[i].idh1990)  
   }
+  indexValue=index1990
 }
 
-let set1995=()=>{
+export let set1995=()=>{
+  let index1995=[];
   for (let i = 0; i <idh.length; i++) {
-    indexValue.push(idh[i].idh1995)  
+    index1995.push(idh[i].idh1995)  
   }
+  indexValue=index1995
 }
 
-let set2000=()=>{
+export let set2000=()=>{
+  let index2000=[]
   for (let i = 0; i <idh.length; i++) {
-    indexValue.push(idh[i].idh2000)  
+    index2000.push(idh[i].idh2000)  
   }
+  indexValue=index2000
 }
 
-let set2005=()=>{
+export let set2005=()=>{
+  let index2005=[]
   for (let i = 0; i <idh.length; i++) {
-    indexValue.push(idh[i].idh2005)  
+    index2005.push(idh[i].idh2005)  
   }
+  indexValue=index2005
 }
 
-let set2010=()=>{
-  
+export let set2010=()=>{
+  let index2010=[];
   for (let i = 0; i <idh.length; i++) {
-    indexValue.push(idh[i].idh2010)  
+    index2010.push(idh[i].idh2010)  
   }
+  indexValue=index2010
 }
 
 export let setData=(setYear,idhSort)=>{
   setYear();
   idhSort(idh,indexValue);
-  d3.select('.svg').remove();
+  console.log(idh,indexValue);
   drawBarchart();
 }
+
 
 export let drawBarchart=()=>{
       const margin = {top: 20, right: 20, bottom: 40, left: 45};
@@ -166,7 +172,7 @@ export let drawBarchart=()=>{
       svg.selectAll('.bar')
       .data(idh)
       .enter().append('rect')
-      .attr('class', 'bar')
+      .attr('class', d=>d.name)
       .attr('x', d =>  x(d.abr))
       .attr('width', x.bandwidth())
       .attr('y', y(0) )
@@ -189,5 +195,13 @@ export let drawBarchart=()=>{
 
 module.esports={
     injectDropdownStates,
-    drawBarchart
+    setData,
+    set2010,
+    set2005,
+    set2000,
+    set1995,
+    set1990,
+    set1980,
+    descendent,
+    ascendent
 }

@@ -51,12 +51,15 @@ export let descendent = (arr) => {
 }
 //What we are going to do with the sorting function and the selected year array
 let idhData = [];
+let alecs;
 export let setData= (idhYear,sortBy) => {
   sortBy(idhYear);
   idhData=[];
   for (let i = 0; i < idhYear.length; i++) {
     idhData.push(idhYear[i])  
   }
+  alecs = idhYear;
+  console.log(idhData,alecs);
   drawBarchart();
   drawBarchart2();
 };
@@ -183,7 +186,6 @@ function chart(idhData, chartWidth, chartHeight, margin) {
   
   svg2.append('g')
   .attr('class', 'y axis2')
-  .attr('transform', 'translate(0,0)') 
   .call(yAxis2)
   .style('font-weight','bolder')
   .style('font-size','0.8rem');
@@ -210,13 +212,12 @@ function chart(idhData, chartWidth, chartHeight, margin) {
   .enter().append('rect')
   .attr('class',(d)=>{return d.name.replace(/\s/g, '')+'2'})
   .attr('y', d=>y(d.abb) )
-  .attr('x',y(0))
+  .attr('x',x(0))
   .attr('height', y.bandwidth())
   .style('fill', '#b2ff59')
   .transition()
   .delay( 10 )
-  .attr('x', (d) =>  x(d.idh))
-  .attr('width',(d)=> width -x(0.5))
+  .attr('width',(d)=> x(d.idh))
    
 }
 }

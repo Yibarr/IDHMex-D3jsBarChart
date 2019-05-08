@@ -29,7 +29,6 @@ export class Chart extends Component {
   componentDidMount(){
         this.fillDropdowns()
         this.mountedData(this.state.setYear,this.state.sortBy)
-        console.log(this.state.setYear);
         
       };
 
@@ -44,11 +43,17 @@ export class Chart extends Component {
       .style('fill','#b2ff59')
 
       console.log('hola');
-      console.log(this.state.setYear.indexOf(d.name));
+      
+      console.log(IDH.idh2010)
 
-/*       this.setState({selectedSt:d.name.replace(/\s/g, '')})
- */
+      this.setState({selectedSt:IDH.idh2010.indexOf(this.state.setYear[i])});
+      console.log(IDH.idh2010.indexOf(this.state.setYear[i]));
+      
+
     d3.selectAll('.'+d.name.replace(/\s/g, ''))
+    .style('fill','#eeff41')
+
+    d3.selectAll('.'+d.name.replace(/\s/g, '')+'2')
     .style('fill','#eeff41')
   })
 
@@ -139,6 +144,7 @@ export class Chart extends Component {
             </Col>
           </Row>
           <div id='chart'></div>
+          <div id='chart2'></div>
           <Row> 
             <Col l={6} m={6} s={12} offset='l3 m3'>
               <CardPanel className="cardP deep-purple">

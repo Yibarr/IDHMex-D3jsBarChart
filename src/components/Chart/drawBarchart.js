@@ -8,12 +8,24 @@ export let idh1995 = IDH.idh1995;
 export let idh1990 = IDH.idh1990;
 export let idh1980 = IDH.idh1980;
 //expected output: arr[]
-
+export let injectDropdownStates=()=>{  
+  d3.select('#states')
+    .selectAll('states')
+    .data(idh2010)
+    .enter()
+    .append('Li')
+    .append('a')
+    .attr('class','statesdp deep-purple-text')
+    .text(d=>d.name)
+    
+    
+}
 //sorting functions
 
 export let randomOrder = (arr) => {
     arr.sort(()=>Math.random() - 0.5);
     d3.select('.svg').remove();
+    d3.select('.svg2').remove();
 };
 
 export let inAlphabeticalOrder = (arr) => {
@@ -23,28 +35,30 @@ export let inAlphabeticalOrder = (arr) => {
         return 0;
       });
     d3.select('.svg').remove();
+    d3.select('.svg2').remove();
 }
 
 export let ascendent = (arr) => {
     arr.sort((a,b) => a.idh < b.idh ? -1 : 1);
     d3.select('.svg').remove();
+    d3.select('.svg2').remove();
 }
 
 export let descendent = (arr) => {
     arr.sort((a,b) => a.idh > b.idh ? -1 : 1);
     d3.select('.svg').remove();
+    d3.select('.svg2').remove();
 }
 //What we are going to do with the sorting function and the selected year array
 let idhData = [];
 export let setData= (idhYear,sortBy) => {
   sortBy(idhYear);
-  
   idhData=[];
   for (let i = 0; i < idhYear.length; i++) {
     idhData.push(idhYear[i])  
   }
-  console.log(idhData)
   drawBarchart();
+  drawBarchart2();
 };
 
 export let drawBarchart=()=>{
@@ -77,7 +91,7 @@ export let drawBarchart=()=>{
       .append('g')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    x.domain(idhData.map(d => d.abb));
+    x.domain(idhData.map(d => d.name));
     y.domain([0, d3.max(idh2010, (d) =>  d.idh)]);
 
     svg.append('g')
@@ -85,7 +99,7 @@ export let drawBarchart=()=>{
     .attr('transform', 'translate(0,' + height + ')')
     .call(xAxis)
     .style('font-weight','bolder')
-    .style('font-size','0.7rem');
+    .style('font-size','0.5rem');
     
 
     svg.append('g')
@@ -93,6 +107,9 @@ export let drawBarchart=()=>{
     .call(yAxis)
     .style('font-weight','bolder')
     .style('font-size','1rem');
+
+    d3.selectAll('.x.axis text')
+      .attr('transform', 'translate(0,10)rotate(-20)');
 
 
      svg.selectAll("text")
@@ -104,43 +121,104 @@ export let drawBarchart=()=>{
     .style('font-size', '0.56rem')
     .transition()
     .delay(100)
-    .attr('x', (d) => { return x(d.abb)+ 1 })
+    .attr('x', (d) => { return x(d.name)+ 1 })
     
     svg.selectAll('.bar')
     .data(idhData)
     .enter().append('rect')
     .attr('class',(d)=>d.name.replace(/\s/g, ''))
-    .attr('x', d =>  x(d.abb))
+    .attr('x', d =>  x(d.name))
     .attr('width', x.bandwidth())
     .attr('y', y(0) )
     .style('fill', '#b2ff59')
-    .on('mouseover', function() {
-      d3.select(this).style('fill', 'orange')
-    })
-    .on('mouseout', function() {
-      d3.select(this).style('fill', '#b2ff59')
-    }) 
     .transition()
     .delay( 10 )
     .attr('y', (d) =>  y(d.idh))
-    .attr('height', (d) =>  height - y(d.idh))
+    .attr('height', (d) =>  height - y(d.idh)) 
    
   }
 }
 
-export let injectDropdownStates=()=>{  
-    d3.select('#states')
-      .selectAll('states')
-      .data(idh2010)
-      .enter()
-      .append('Li')
-      .append('a')
-      .attr('class','statesdp deep-purple-text')
-      .text(d=>d.name)
-      
-      
-  }
+export let drawBarchart2=()=>{
+  //{top: 20, right: 20, bottom: 40, left: 45};
+  const margin = {top: 50, right: 0, bottom: 20, left: 40};
+  const width = 360;
+  const height = 955;
 
-  /* module.exports={
+  chart(idhData,width, height, margin);
 
-  } */
+function chart(idhData, chartWidth, chartHeight, margin) {
+  const width = chartWidth - margin.left - margin.right;
+  const height = chartHeight - margin.top - margin.bottom;
+  console.log(height, width);
+  
+  const y= d3.scaleBand()
+    .rangeRound([0, height])
+    .paddingInner(0.1);
+
+  const x = d3.scaleLinear()
+    .range([0,width]);
+    
+    const yAxis2 = d3.axisLeft(y)
+    
+    const xAxis2 = d3.axisTop(x)
+                  .ticks(15)
+                  
+
+   const svg2 = d3.select('#chart2').append('svg')
+    .attr('class','svg2')
+    .attr('width', 500)
+    .attr('height', 955)
+    .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+  y.domain(idhData.map(d => d.abb));
+  x.domain([0, d3.max(idh2010, (d) =>  d.idh)]);
+
+  svg2.append('g')
+  .attr('class', 'x axis2')
+  .call(xAxis2)
+  .style('font-size','0.8rem');
+  
+  
+  svg2.append('g')
+  .attr('class', 'y axis2')
+  .attr('transform', 'translate(0,0)') 
+  .call(yAxis2)
+  .style('font-weight','bolder')
+  .style('font-size','0.8rem');
+
+  d3.selectAll('.x.axis2 text')
+      .attr('transform', 'translate(-15,-20)rotate(60)');
+
+
+
+  svg2.selectAll("text")
+  .data(idhData,d=>d)
+  .enter().append( "text" )
+  .text(d=>d.idh)
+  .attr('x',  d=>x(d.idh)  )
+  .attr('y',y(0) )
+  .style('font-size', '0.56rem')
+  .transition()
+  .delay(100)
+  .attr('y',d=>y(d.abb) )
+  
+  
+   svg2.selectAll('.bar')
+  .data(idhData)
+  .enter().append('rect')
+  .attr('class',(d)=>{return d.name.replace(/\s/g, '')+'2'})
+  .attr('y', d=>y(d.abb) )
+  .attr('x',y(0))
+  .attr('height', y.bandwidth())
+  .style('fill', '#b2ff59')
+  .transition()
+  .delay( 10 )
+  .attr('x', (d) =>  x(d.idh))
+  .attr('width',(d)=> width -x(0.5))
+   
+}
+}
+
+

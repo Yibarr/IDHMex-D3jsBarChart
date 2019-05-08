@@ -38,7 +38,7 @@ export let descendent = (arr) => {
 let idhData = [];
 export let setData= (idhYear,sortBy) => {
   sortBy(idhYear);
-  console.log(idhYear);
+  
   idhData=[];
   for (let i = 0; i < idhYear.length; i++) {
     idhData.push(idhYear[i])  
@@ -78,7 +78,7 @@ export let drawBarchart=()=>{
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     x.domain(idhData.map(d => d.abb));
-    y.domain([0, d3.max(idhData, (d) =>  d.idh)]);
+    y.domain([0, d3.max(idh2010, (d) =>  d.idh)]);
 
     svg.append('g')
     .attr('class', 'x axis')
@@ -109,16 +109,16 @@ export let drawBarchart=()=>{
     svg.selectAll('.bar')
     .data(idhData)
     .enter().append('rect')
-    .attr('class', d=>d.name)
+    .attr('class',(d)=>d.name.replace(/\s/g, ''))
     .attr('x', d =>  x(d.abb))
     .attr('width', x.bandwidth())
     .attr('y', y(0) )
-    .style('fill', '#B0F566')
+    .style('fill', '#b2ff59')
     .on('mouseover', function() {
       d3.select(this).style('fill', 'orange')
     })
     .on('mouseout', function() {
-      d3.select(this).style('fill', '#B0F566')
+      d3.select(this).style('fill', '#b2ff59')
     }) 
     .transition()
     .delay( 10 )
@@ -131,15 +131,13 @@ export let drawBarchart=()=>{
 export let injectDropdownStates=()=>{  
     d3.select('#states')
       .selectAll('states')
-      .data(IDH)
+      .data(idh2010)
       .enter()
       .append('Li')
       .append('a')
-      .attr('class',d=>d.name+' '+'deep-purple-text')
+      .attr('class','statesdp deep-purple-text')
       .text(d=>d.name)
-      .on('click',()=>{
-        
-      })
+      
       
   }
 

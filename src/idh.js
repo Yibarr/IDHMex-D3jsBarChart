@@ -21,7 +21,7 @@ let IDH = {
             idh:0.821
         },
         {
-            name: 'Ciudad de México',
+            name: 'Ciudad de Mexico',
             abb: 'CMX',
             idh:0.954
         },
@@ -51,7 +51,7 @@ let IDH = {
             idh:0.864
         },
         {
-            name:'Estado de México',
+            name:'Estado de Mexico',
             abb:'EMX',
             idh:0.843
         },
@@ -184,7 +184,7 @@ let IDH = {
             idh:0.804
         },
         {
-            name: 'Ciudad de México',
+            name: 'Ciudad de Mexico',
             abb: 'CMX',
             idh:0.938
         },
@@ -214,7 +214,7 @@ let IDH = {
             idh:0.822
         },
         {
-            name:'Estado de México',
+            name:'Estado de Mexico',
             abb:'EMX',
             idh:0.820
         },
@@ -347,7 +347,7 @@ let IDH = {
             idh:0.792
         },
         {
-            name: 'Ciudad de México',
+            name: 'Ciudad de Mexico',
             abb: 'CMX',
             idh:0.930
         },
@@ -377,7 +377,7 @@ let IDH = {
             idh:0.805
         },
         {
-            name:'Estado de México',
+            name:'Estado de Mexico',
             abb:'EMX',
             idh:0.806
         },
@@ -510,7 +510,7 @@ let IDH = {
             idh:0.775
         },
         {
-            name: 'Ciudad de México',
+            name: 'Ciudad de Mexico',
             abb: 'CMX',
             idh:0.904
         },
@@ -540,7 +540,7 @@ let IDH = {
             idh:0.781
         },
         {
-            name:'Estado de México',
+            name:'Estado de Mexico',
             abb:'EMX',
             idh:0.775
         },
@@ -673,7 +673,7 @@ let IDH = {
             idh:0.785
         },
         {
-            name: 'Ciudad de México',
+            name: 'Ciudad de Mexico',
             abb: 'CMX',
             idh:0.911
         },
@@ -703,7 +703,7 @@ let IDH = {
             idh:0.773
         },
         {
-            name:'Estado de México',
+            name:'Estado de Mexico',
             abb:'EMX',
             idh:0.791
         },
@@ -836,7 +836,7 @@ let IDH = {
             idh:0.647
         },
         {
-            name: 'Ciudad de México',
+            name: 'Ciudad de Mexico',
             abb: 'CMX',
             idh:0.828
         },
@@ -866,7 +866,7 @@ let IDH = {
             idh:0.722
         },
         {
-            name:'Estado de México',
+            name:'Estado de Mexico',
             abb:'EMX',
             idh:0.743
         },

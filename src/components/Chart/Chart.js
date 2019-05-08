@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
-import {Container,Col,Row,Dropdown,Button} from 'react-materialize';
+import * as d3 from 'd3'
+import IDH from '../../idh'
+import {Container,Col,Row,Dropdown,Button,CardPanel} from 'react-materialize';
 import {
   idh2010,
   idh2005,
@@ -18,21 +20,39 @@ import {
 import './Chart.css'
 
 export class Chart extends Component {
-    state={
-      setYear:idh1980,
-      sortBy:randomOrder
+    state={ 
+      setYear:idh2010,
+      sortBy:randomOrder,
+      selectedSt:0
     }
    
   componentDidMount(){
-        this.fillDropdowns();
+        this.fillDropdowns()
         this.mountedData(this.state.setYear,this.state.sortBy)
-        console.log(idh2010);
+        console.log(this.state.setYear);
         
       };
 
-  fillDropdowns(){
-    injectDropdownStates(); 
-  };
+ fillDropdowns(){
+  injectDropdownStates()
+  
+  
+  
+  d3.selectAll('.statesdp')
+  .on('click',(d,i)=>{
+    d3.selectAll('rect')
+      .style('fill','#b2ff59')
+
+      console.log('hola');
+      console.log(this.state.setYear.indexOf(d.name));
+
+/*       this.setState({selectedSt:d.name.replace(/\s/g, '')})
+ */
+    d3.selectAll('.'+d.name.replace(/\s/g, ''))
+    .style('fill','#eeff41')
+  })
+
+ }
 
   mountedData=(setYear,sortBy)=>{  
       setData(setYear,sortBy)
@@ -86,7 +106,8 @@ export class Chart extends Component {
       break
       default :
     }
-  } 
+  }
+
   render() {  
     return (
       <div>
@@ -97,7 +118,6 @@ export class Chart extends Component {
           <Row>
             <Col s={4} m={4}>
               <Dropdown id='states' trigger={<Button className='large-button deep-purple'>States</Button>}>
-                
               </Dropdown> 
             </Col>
             <Col s={3} m={2} push='m1' >
@@ -119,7 +139,14 @@ export class Chart extends Component {
             </Col>
           </Row>
           <div id='chart'></div>
-          <div id='idhCard'></div>
+          <Row> 
+            <Col l={6} m={6} s={12} offset='l3 m3'>
+              <CardPanel className="cardP deep-purple">
+                <p className='large-button white-text'>El IDH más alto de {IDH.idh2010[this.state.selectedSt].name} es de {IDH.idh2010[this.state.selectedSt].idh} mientras que el más bajo es {IDH.idh1980[this.state.selectedSt].idh}, el promedio de todos sus idh es {(IDH.idh2010[this.state.selectedSt].idh+IDH.idh2005[this.state.selectedSt].idh+IDH.idh2000[this.state.selectedSt].idh+IDH.idh1995[this.state.selectedSt].idh+IDH.idh1990[this.state.selectedSt].idh+IDH.idh1980[this.state.selectedSt].idh)/6}
+                </p>
+              </CardPanel>
+            </Col>
+          </Row>
         </Container>
       </div>
     )

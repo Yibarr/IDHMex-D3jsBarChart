@@ -1,39 +1,38 @@
 
 import React, { Component } from 'react';
 import {Container,Col,Row,Dropdown,Button} from 'react-materialize';
-import {injectDropdownStates,
-  setData,
-  set2010, 
-  set2005,
-  set2000,
-  set1995,
-  set1990,
-  set1980,
-  ascendent,
-  descendent, 
+import {
+  idh2010,
+  idh2005,
+  idh2000,
+  idh1995,
+  idh1990,
+  idh1980,
+  randomOrder,
   inAlphabeticalOrder,
-  drawBarchart
-} from '../barchart'
+  ascendent,
+  descendent,
+  setData,
+  injectDropdownStates
+} from '../Chart/drawBarchart'
 import './Chart.css'
 
 export class Chart extends Component {
     state={
-      setYear:set2010,
-      sortBy:inAlphabeticalOrder
+      setYear:idh1980,
+      sortBy:randomOrder
     }
    
   componentDidMount(){
         this.fillDropdowns();
         this.mountedData(this.state.setYear,this.state.sortBy)
+        console.log(idh2010);
+        
       };
 
   fillDropdowns(){
     injectDropdownStates(); 
   };
-
-  draw(){
-    drawBarchart()
-  }
 
   mountedData=(setYear,sortBy)=>{  
       setData(setYear,sortBy)
@@ -42,29 +41,29 @@ export class Chart extends Component {
   changeYear= (e) => {    
     switch(e){
       case "2010":
-        this.setState({setYear: set2010}, () => this.mountedData(this.state.setYear,this.state.sortBy));
+        this.setState({setYear: idh2010}, () => this.mountedData(this.state.setYear,this.state.sortBy));
         console.log(this.state.setYear);
       break
       case "2005":
-        this.setState({setYear: set2005},()=> this.mountedData(this.state.setYear,this.state.sortBy));
+        this.setState({setYear: idh2005},()=> this.mountedData(this.state.setYear,this.state.sortBy));
         
         console.log(this.state.setYear);
       break
       case "2000":
-        this.setState({setYear: set2000},()=>this.mountedData(this.state.setYear,this.state.sortBy));
+        this.setState({setYear: idh2000},()=>this.mountedData(this.state.setYear,this.state.sortBy));
         
         console.log(this.state.setYear);
       break
       case "1995":
-        this.setState({setYear: set1995},()=>this.mountedData(this.state.setYear,this.state.sortBy));
+        this.setState({setYear: idh1995},()=>this.mountedData(this.state.setYear,this.state.sortBy));
         console.log(this.state.setYear);
       break
       case "1990":
-        this.setState({setYear: set1990},()=>this.mountedData(this.state.setYear,this.state.sortBy));
+        this.setState({setYear: idh1990},()=>this.mountedData(this.state.setYear,this.state.sortBy));
         console.log(this.state.setYear);
       break
       case "1980":
-        this.setState({setYear: set1980},()=>this.mountedData(this.state.setYear,this.state.sortBy));
+        this.setState({setYear: idh1980},()=>this.mountedData(this.state.setYear,this.state.sortBy));
       break
       default :
     }
@@ -93,8 +92,7 @@ export class Chart extends Component {
       <div>
         <Container>
           <div className='head-cont'>
-            <h1 className='head'>Mexico DHI Visualization</h1>
-            <h3>{this.state.setYear}</h3> 
+            <h1 className='head'>Mexico DHI Visualization</h1> 
           </div>
           <Row>
             <Col s={4} m={4}>
@@ -121,6 +119,7 @@ export class Chart extends Component {
             </Col>
           </Row>
           <div id='chart'></div>
+          <div id='idhCard'></div>
         </Container>
       </div>
     )

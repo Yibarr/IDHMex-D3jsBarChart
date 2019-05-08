@@ -3,40 +3,28 @@ import idh from '../manifest'
 
 let indexValue = [];
 
-export let injectDropdownStates=()=>{  
-  d3.select('#states')
-    .selectAll('states')
-    .data(idh)
-    .enter()
-    .append('Li')
-    .append('a')
-    .attr('class','deep-purple-text')
-    .text(d=>d.name) 
+export let selectRect=()=>{
+  d3.select(`.Aguascalientes`)
+  .style('fill','red')
 }
 
 export let randomOrder=()=>{
-  
+  indexValue.sort(() => Math.random() - 0.5);
+  d3.select('.svg').remove();
 }
 
-export let inAlphabeticalOrder=()=>{
-  
-  indexValue.sort(function(idh){
-    if(idh.name < idh.name) { return -1; }
-    if(idh.name > idh.name) { return 1; }
-    return 0;
-})
-  idh.sort(function(idh){
-    if(idh.name < idh.name) { return -1; }
-    if(idh.name > idh.name) { return 1; }
+export let inAlphabeticalOrder=(arr,arr1)=>{
+  arr.sort(function(a,b){
+    if(a.name < b.name) { return -1; }
+    if(b.name > a.name) { return 1; }
     return 0;
   })
-  d3.select('svg').remove() 
+
+  d3.select('.svg').remove() 
 }
 
 export let ascendent=(arr,arr1)=>{
-  arr.sort((a,b)=>{
-    return a-b
-  });
+  arr.sort((a,b) => a.idh2010 < b.idh2010 ? -1 : 1);
   arr1.sort((a,b)=>{
     return a-b
   });
@@ -44,13 +32,11 @@ export let ascendent=(arr,arr1)=>{
 }
 
 export let descendent=(arr,arr1)=>{
-  arr.sort((a,b)=>{
-    return b-a
-  });
+  arr.sort((a,b) => a.idh2010 > b.idh2010 ? -1 : 1);
   arr1.sort((a,b)=>{
     return b-a
   });
-    d3.select('.svg').remove();
+  d3.select('.svg').remove();
 }
 
 export let set1980=()=>{
@@ -177,12 +163,12 @@ export let drawBarchart=()=>{
       .attr('width', x.bandwidth())
       .attr('y', y(0) )
       .style('fill', '#B0F566')
-      .on('mouseover', function() {
+      /* .on('mouseover', function() {
         d3.select(this).style('fill', 'orange')
       })
       .on('mouseout', function() {
         d3.select(this).style('fill', '#B0F566')
-      })
+      }) */
       .transition()
       .delay( 10 )
       .attr('y', (d,i) =>  y(indexValue[i]))
@@ -191,10 +177,41 @@ export let drawBarchart=()=>{
     }
 }
 
+export let injectDropdownStates=()=>{  
+  d3.select('#states')
+    .selectAll('states')
+    .data(idh)
+    .enter()
+    .append('Li')
+    .append('a')
+    .attr('class',d=>d.name+' '+'deep-purple-text')
+    .text(d=>d.name)
+    .on('click',()=>{
+      d3.select('.Aguascalientes')
+      .style('fill','red')
+      
+      console.log('hola')
+      d3.select('.promedio').remove()
+      d3.select('#idhCard')
+      .selectAll('idhCard')
+      .data(idh)
+      .enter()
+      .append('p')
+      .attr('class','promedio')
+      .text(()=>{
+        
+        return 'El índice más alto es '
+      })
+      
+      
+    }) 
+}
 
 
-module.esports={
+
+module.exports={
     injectDropdownStates,
+    selectRect,
     setData,
     set2010,
     set2005,
@@ -203,5 +220,6 @@ module.esports={
     set1990,
     set1980,
     descendent,
-    ascendent
+    ascendent,
+    randomOrder
 }
